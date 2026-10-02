@@ -17,7 +17,7 @@ export function createWidgetWindow(store: AppStore): BrowserWindow {
     maximizable: false,
     minimizable: false,
     fullscreenable: false,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     skipTaskbar: true,
     hasShadow: true,
     webPreferences: {
@@ -39,13 +39,17 @@ export function createWidgetWindow(store: AppStore): BrowserWindow {
   const window = new BrowserWindow(options)
   positionWindow(window, store)
 
-  // 'floating' keeps the widget above ordinary windows without stealing focus.
-  window.setAlwaysOnTop(true, 'floating')
-  try {
-    window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
-  } catch {
-    // Not supported on every window manager.
+  // One level under normal windows, so Finder and every other app cover it.
+  // Clicking the widget would otherwise raise it; put it back each time.
+  // On macOS a custom level also joins every Space, so leave it on this desktop only.
+  const sendToBack = (): void => {
+    if (window.isDestroyed()) return
+    window.setAlwaysOnTop(true, 'normal', -1)
+    if (process.platform === 'darwin') window.setVisibleOnAllWorkspaces(false)
   }
+  sendToBack()
+  window.on('show', sendToBack)
+  window.on('focus', sendToBack)
 
   // Dragging emits a stream of move events; only write the final resting place.
   let persistTimer: NodeJS.Timeout | null = null

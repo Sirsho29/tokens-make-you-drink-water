@@ -59,9 +59,8 @@ export async function fetchCursorUsage(options: CursorFetchOptions): Promise<Tok
         Origin: 'https://cursor.com',
         Referer: 'https://cursor.com/dashboard'
       },
+      // Any userId, even 0, is treated as a request for another user's data and returns 401.
       body: JSON.stringify({
-        teamId: 0,
-        userId: 0,
         startDate: String(startOfLocalDay(now).getTime()),
         endDate: String(now.getTime())
       }),

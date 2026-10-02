@@ -18,13 +18,13 @@
  * white or grey so nothing in the widget reads as a colour.
  */
 :root {
-  --fg: #16161a;
-  --fg-muted: #5d5d66;
-  --fg-faint: #76767f;
+  --fg: #171717;
+  --fg-muted: #5e5e5e;
+  --fg-faint: #787878;
   --pane: rgba(255, 255, 255, 0.58);
   --hairline: rgba(0, 0, 0, 0.14);
   --well: rgba(0, 0, 0, 0.055);
-  --water: rgba(40, 40, 46, 0.3);
+  --water: rgba(38, 38, 38, 0.3);
   --glass-edge: rgba(0, 0, 0, 0.3);
   --knob: #ffffff;
   color-scheme: light dark;
@@ -32,15 +32,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fg: #f3f3f5;
-    --fg-muted: #a7a7b0;
-    --fg-faint: #8e8e98;
-    --pane: rgba(32, 32, 36, 0.52);
+    --fg: #f4f4f4;
+    --fg-muted: #a9a9a9;
+    --fg-faint: #8f8f8f;
+    --pane: rgba(30, 30, 30, 0.52);
     --hairline: rgba(255, 255, 255, 0.14);
     --well: rgba(255, 255, 255, 0.075);
     --water: rgba(255, 255, 255, 0.26);
     --glass-edge: rgba(255, 255, 255, 0.36);
-    --knob: #16161a;
+    --knob: #171717;
   }
 }
 

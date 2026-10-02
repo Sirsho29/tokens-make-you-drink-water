@@ -42,6 +42,9 @@ export default defineConfig({
       strictPort: true
     },
     build: {
+      // electron-vite leaves bundles readable by default; the shipped widget does not
+      // need to be.
+      minify: 'esbuild',
       rollupOptions: {
         input: { index: resolve('src/renderer/index.html') }
       }

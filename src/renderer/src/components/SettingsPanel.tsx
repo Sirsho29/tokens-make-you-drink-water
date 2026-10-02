@@ -35,7 +35,7 @@ export function SettingsPanel({
 
   return (
     <div className="no-drag flex h-full flex-col">
-      <header className="flex items-center justify-between px-3.5 pb-2 pt-3">
+      <header className="drag-region flex items-center justify-between px-3.5 pb-2 pt-3">
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted">Settings</h2>
         <button
           type="button"

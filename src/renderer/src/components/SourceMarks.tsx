@@ -14,12 +14,12 @@ export function SourceMarks({ sources }: SourceMarksProps): React.JSX.Element {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3.5 text-ink-faint">
+    <div className="flex items-center justify-center gap-3.5 text-ink-muted">
       {sources.map((source) => {
         const Mark = SOURCE_MARKS[source]
         return (
           <span key={source} title={SOURCE_LABELS[source]} className="flex items-center">
-            <Mark size={15} className="opacity-80" />
+            <Mark size={15} />
           </span>
         )
       })}

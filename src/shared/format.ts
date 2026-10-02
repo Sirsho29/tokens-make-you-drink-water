@@ -9,10 +9,11 @@ export function formatVolume(ml: number, units: Units): string {
   const value = Number.isFinite(ml) && ml > 0 ? ml : 0
   if (units === 'us') {
     const flOz = value / ML_PER_US_FL_OZ
+    if (value === 0) return '0 fl oz'
     if (flOz < 10) return `${round(flOz, 1)} fl oz`
     return `${round(flOz, 0)} fl oz`
   }
-  if (value < 1000) return `${round(value, value < 10 ? 1 : 0)} mL`
+  if (value < 1000) return `${round(value, value > 0 && value < 10 ? 1 : 0)} mL`
   return `${round(value / 1000, 2)} L`
 }
 

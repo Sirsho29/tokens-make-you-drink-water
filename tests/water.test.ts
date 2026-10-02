@@ -66,12 +66,13 @@ describe('unit formatting', () => {
     expect(formatVolume(340, 'metric')).toBe('340 mL')
     expect(formatVolume(999, 'metric')).toBe('999 mL')
     expect(formatVolume(1240, 'metric')).toBe('1.24 L')
+    expect(formatVolume(0, 'metric')).toBe('0 mL')
   })
 
   it('renders US fluid ounces when asked', () => {
     expect(formatVolume(250, 'us')).toBe('8.5 fl oz')
     expect(formatVolume(1240, 'us')).toBe('42 fl oz')
-    expect(formatVolume(0, 'us')).toBe('0.0 fl oz')
+    expect(formatVolume(0, 'us')).toBe('0 fl oz')
   })
 
   it('switches the glass size readout with the units', () => {

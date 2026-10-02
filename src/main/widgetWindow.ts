@@ -34,8 +34,6 @@ export function createWidgetWindow(store: AppStore): BrowserWindow {
     options.vibrancy = 'under-window'
     options.visualEffectState = 'active'
     options.roundedCorners = true
-    options.titleBarStyle = 'customButtonsOnHover'
-    options.trafficLightPosition = { x: -100, y: -100 }
   }
 
   const window = new BrowserWindow(options)
@@ -49,13 +47,20 @@ export function createWidgetWindow(store: AppStore): BrowserWindow {
     // Not supported on every window manager.
   }
 
-  const persist = (): void => {
-    if (window.isDestroyed()) return
-    const [x, y] = window.getPosition()
-    store.set('widgetPosition', { x, y })
+  // Dragging emits a stream of move events; only write the final resting place.
+  let persistTimer: NodeJS.Timeout | null = null
+  const persistPosition = (): void => {
+    if (persistTimer) clearTimeout(persistTimer)
+    persistTimer = setTimeout(() => {
+      if (window.isDestroyed()) return
+      const [x, y] = window.getPosition()
+      store.set('widgetPosition', { x, y })
+    }, 400)
   }
-  window.on('moved', persist)
-  window.on('move', persist)
+  window.on('moved', persistPosition)
+  window.on('closed', () => {
+    if (persistTimer) clearTimeout(persistTimer)
+  })
 
   window.webContents.setWindowOpenHandler(({ url }) => {
     void shell.openExternal(url)

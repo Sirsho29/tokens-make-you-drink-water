@@ -68,7 +68,7 @@ export function App(): React.JSX.Element {
       ) : (
         <div className="drag-region flex h-full flex-col px-4 pb-4 pt-3.5">
           <div className="flex items-start justify-between">
-            <span className="text-[9.5px] uppercase tracking-[0.16em] text-ink-faint">today</span>
+            <span className="text-[10px] uppercase tracking-[0.16em] text-ink-faint">today</span>
             <button
               type="button"
               aria-label="Settings"

@@ -20,7 +20,7 @@
 :root {
   --fg: #16161a;
   --fg-muted: #5d5d66;
-  --fg-faint: #9a9aa3;
+  --fg-faint: #76767f;
   --pane: rgba(255, 255, 255, 0.58);
   --hairline: rgba(0, 0, 0, 0.14);
   --well: rgba(0, 0, 0, 0.055);
@@ -34,7 +34,7 @@
   :root {
     --fg: #f3f3f5;
     --fg-muted: #a7a7b0;
-    --fg-faint: #76767f;
+    --fg-faint: #8e8e98;
     --pane: rgba(32, 32, 36, 0.52);
     --hairline: rgba(255, 255, 255, 0.14);
     --well: rgba(255, 255, 255, 0.075);
@@ -77,6 +77,21 @@ label,
 
 input {
   user-select: text;
+}
+
+/* The settings list scrolls; its scrollbar should not announce itself. */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fg-faint);
+  border-radius: 3px;
+  opacity: 0.4;
 }
 
 @keyframes water-drift {

@@ -177,10 +177,10 @@ function SourceRow({
   const Mark = SOURCE_MARKS[source]
   return (
     <li className="flex items-center gap-2">
-      <Mark size={13} className="shrink-0 text-ink-faint" />
+      <Mark size={13} className="shrink-0 text-ink-muted" />
       <span className="min-w-0 flex-1">
         <span className="block truncate text-[11px] text-ink">{SOURCE_LABELS[source]}</span>
-        <span className="block truncate text-[9.5px] text-ink-faint" title={reading?.detail}>
+        <span className="block truncate text-[10px] text-ink-faint" title={reading?.detail}>
           {statusText(reading, enabled)}
         </span>
       </span>
@@ -222,13 +222,13 @@ function Row({
         <span className="text-[11px] text-ink">{label}</span>
         {children}
       </div>
-      <p className="mt-0.5 text-[9.5px] leading-snug text-ink-faint">{hint}</p>
+      <p className="mt-0.5 text-[10px] leading-snug text-ink-faint">{hint}</p>
     </div>
   )
 }
 
 function Hint({ children }: { children: React.ReactNode }): React.JSX.Element {
-  return <p className="pb-1 text-[9.5px] leading-snug text-ink-faint">{children}</p>
+  return <p className="pb-1 text-[10px] leading-snug text-ink-faint">{children}</p>
 }
 
 function Divider(): React.JSX.Element {

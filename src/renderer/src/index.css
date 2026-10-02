@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif;
+  --color-ink: var(--fg);
+  --color-ink-muted: var(--fg-muted);
+  --color-ink-faint: var(--fg-faint);
+  --color-pane: var(--pane);
+  --color-hairline: var(--hairline);
+  --color-well: var(--well);
+  --color-water: var(--water);
+  --color-knob: var(--knob);
+}
+
+/*
+ * Black, white and grey only — including the water, which is a translucent
+ * white or grey so nothing in the widget reads as a colour.
+ */
+:root {
+  --fg: #16161a;
+  --fg-muted: #5d5d66;
+  --fg-faint: #9a9aa3;
+  --pane: rgba(255, 255, 255, 0.58);
+  --hairline: rgba(0, 0, 0, 0.14);
+  --well: rgba(0, 0, 0, 0.055);
+  --water: rgba(40, 40, 46, 0.3);
+  --glass-edge: rgba(0, 0, 0, 0.3);
+  --knob: #ffffff;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #f3f3f5;
+    --fg-muted: #a7a7b0;
+    --fg-faint: #76767f;
+    --pane: rgba(32, 32, 36, 0.52);
+    --hairline: rgba(255, 255, 255, 0.14);
+    --well: rgba(255, 255, 255, 0.075);
+    --water: rgba(255, 255, 255, 0.26);
+    --glass-edge: rgba(255, 255, 255, 0.36);
+    --knob: #16161a;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  /* Electron paints the vibrancy behind the window; the page itself stays clear. */
+  background: transparent;
+  font-family: var(--font-sans);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+/* The widget surface is the drag handle; controls opt out. */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+button,
+input,
+select,
+label,
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+input {
+  user-select: text;
+}
+
+@keyframes water-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-40px);
+  }
+}
+
+.water-surface {
+  animation: water-drift 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-surface {
+    animation: none;
+  }
+}
+
+/*
+ * Browser preview only: Electron supplies the desktop behind the widget, a plain
+ * browser tab does not, so stand the widget on a neutral grey backdrop.
+ */
+html.preview body {
+  background:
+    radial-gradient(circle at 30% 20%, #4a4a4f 0%, #2a2a2e 45%, #17171a 100%),
+    linear-gradient(#232327, #16161a);
+  display: grid;
+  place-items: center;
+}
+
+html.preview #root {
+  height: auto;
+}

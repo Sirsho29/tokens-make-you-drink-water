@@ -36,7 +36,7 @@ export function createTray(window: BrowserWindow, state: StateService): Tray {
           click: () => toggleWidget(window)
         },
         { type: 'separator' },
-        { label: 'Quit', accelerator: 'Command+Q', click: () => app.quit() }
+        { label: 'Quit', accelerator: 'CommandOrControl+Q', click: () => app.quit() }
       ])
     )
   }

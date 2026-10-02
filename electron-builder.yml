@@ -1,0 +1,23 @@
+appId: com.tokensmakeyoudrinkwater.widget
+productName: tokens make you drink water
+directories:
+  output: release
+files:
+  - out/**/*
+  - package.json
+asar: true
+npmRebuild: false
+mac:
+  category: public.app-category.productivity
+  darkModeSupport: true
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+  # Accessory app: the widget and the tray icon are the whole interface, no Dock tile.
+  extendInfo:
+    LSUIElement: true
+    NSHumanReadableCopyright: MIT licensed
+  # Unsigned on purpose: anyone can build this without an Apple developer account.
+  identity: null
